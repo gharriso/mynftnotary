@@ -1,0 +1,2 @@
+# mynftnotary
+My NftNotary Application 
