@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "ipfs-http-client": "^59.0.0"
+  },
+  "type": "module"
+}
+ 
