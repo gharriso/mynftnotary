@@ -23,23 +23,24 @@ const urlencodedParser = bodyParser.urlencoded({
 let authHeader
 let ipfsGateway
 
-if ('authHeader' in process.env) {
-    authHeader = process.env.authHeader
-} else {
-    log.error("no authHeader in process.env")
-    process.exit(1)
-}
-if ('ipfsGateway' in process.env) {
-    ipfsGateway = process.env.ipfsGateway
-} else {
-    log.error("no ipfsGateway in process.env")
-    process.exit(1)
-}
+
 
 const port = parseInt(process.env.PORT) || 8080;
 
 app.listen(port, () => {
     log.info(`listening on port ${port}`);
+    if ('authHeader' in process.env) {
+        authHeader = process.env.authHeader
+    } else {
+        console.error("no authHeader in process.env")
+        process.exit(1)
+    }
+    if ('ipfsGateway' in process.env) {
+        ipfsGateway = process.env.ipfsGateway
+    } else {
+        console.error("no ipfsGateway in process.env")
+        process.exit(1)
+    }
 });
 
 app.post('/storeFile', jsonParser, async (req, res) => {
