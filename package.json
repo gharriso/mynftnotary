@@ -7,6 +7,15 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "MODE=local jest  --runInBand --forceExit --detectOpenHandles"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "eslint": "^8.31.0",
+    "jest": "^27.5.1"
   }
 }
