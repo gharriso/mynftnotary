@@ -1,9 +1,5 @@
 import express from 'express'
 
-import {
-    create
-} from 'ipfs-http-client'
-
 import bodyParser from 'body-parser'
 
 import simpleNodeLogger from 'simple-node-logger'
@@ -16,14 +12,9 @@ const log = simpleNodeLogger.createSimpleLogger({
 
 const app = express()
 const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({
-    extended: false
-})
 
 let authHeader
 let ipfsGateway
-
-
 
 const port = parseInt(process.env.PORT) || 8080;
 
