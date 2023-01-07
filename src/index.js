@@ -1,7 +1,7 @@
 import express from 'express'
 
 import bodyParser from 'body-parser'
-
+ 
 import simpleNodeLogger from 'simple-node-logger'
 
 import {addFile} from './storeFile.js'
@@ -11,7 +11,7 @@ const log = simpleNodeLogger.createSimpleLogger({
 })
 
 const app = express()
-const jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json({limit: '50mb'})
 
 let authHeader
 let ipfsGateway
