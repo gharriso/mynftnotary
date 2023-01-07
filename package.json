@@ -5,13 +5,13 @@
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "ipfs-http-client": "^59.0.0",
-    "ky": "^0.33.1",
     "simple-node-logger": "^21.8.12"
   },
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "test": "MODE=local jest  --runInBand --forceExit --detectOpenHandles --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "MODE=local jest  --runInBand --forceExit --detectOpenHandles --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "contractTest": "npx hardhat test"
   },
   "jest": {
     "transformIgnorePatterns": [
@@ -24,9 +24,30 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.6",
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.1",
+    "@openzeppelin/contracts": "^4.8.0",
+    "@typechain/ethers-v5": "^10.1.1",
+    "@typechain/hardhat": "^6.1.4",
+    "@types/chai": "^4.3.3",
     "@types/jest": "^27.4.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.11.6",
     "babel-jest": "^29.3.1",
+    "chai": "^4.3.6",
     "eslint": "^8.31.0",
-    "jest": "^27.5.1"
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.0",
+    "hardhat-gas-reporter": "^1.0.2",
+    "jest": "^27.5.1",
+    "solidity-coverage": "^0.7.22",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^4.8.4"
   }
 }

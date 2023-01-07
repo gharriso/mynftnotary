@@ -33,7 +33,7 @@ describe('basic routes test', () => {
   });
   test('load PDF', async () => {
     const debug = false
-    const data = await fs.readFileSync('tests/ABNRegistration.pdf')
+    const data = await fs.readFileSync('tests/ABNRegistration.pdf', 'base64')
     const options = {
       method: 'POST',
       url: 'http://localhost:8080/storeFile',
