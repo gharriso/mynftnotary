@@ -37,4 +37,6 @@ You can target any network from your Hardhat config using:
 
 ```
 npx hardhat run --network <network-name> scripts/deploy.ts
+npx hardhat verify --network <network-name> contractAddr
+// Why doesn't this work on polygon?
 ```

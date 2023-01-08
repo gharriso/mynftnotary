@@ -14,15 +14,21 @@ module.exports = {
    networks: {
       hardhat: {},
       matic_testnet: {
-         url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.polyGonTestNetKey}`,
+         url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.polygonMumbaiKey}`,
          accounts: [
             `${process.env.privateKey}`
          ],
          gasMultiplier: 0.1
       },
+      goerli: {
+            url: `https://eth-goerli.g.alchemy.com/v2/${process.env.goerliKey}`,
+            accounts: [
+               `${process.env.privateKey}`
+            ],
+            gasMultiplier: 0.1
+     },
       matic_mainnet: {
-         /* url: "https://polygon-rpc.com", */
-         url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.polyGonMainNetKey}`,
+         url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.polygonApiKey}`,
          accounts: [
             `${process.env.privateKey}`
          ]
@@ -30,8 +36,9 @@ module.exports = {
    },
    etherscan: {
       apiKey: {
-         matic_testnet: process.env.etherScanKey,
-         matic_mainnet: process.env.etherScanKey
+         matic_testnet: process.env.polyScanKey,
+         matic_mainnet: process.env.polyScanKey,
+         goerli:process.env.etherScanKey
       },
       customChains: [
          {
