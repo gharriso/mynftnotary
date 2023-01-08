@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
  
 import simpleNodeLogger from 'simple-node-logger'
 
-import {addFile} from './storeFile.js'
+import {addFile} from './storeFile.mjs'
 
 const log = simpleNodeLogger.createSimpleLogger({
     timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS',
