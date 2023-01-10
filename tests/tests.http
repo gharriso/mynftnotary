@@ -4,3 +4,10 @@ content-type: application/json
 {
     "data":"Hello World"
 }
+
+POST http://localhost:8080/createUri HTTP/1.1
+content-type: application/json
+
+{
+    "data":{"name":"guy","description":"Freddy"}
+}

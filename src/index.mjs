@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
  
 import simpleNodeLogger from 'simple-node-logger'
 
-import {addFile} from './storeFile.mjs'
+import {addFile,createUri} from './storeFile.mjs'
 
 const log = simpleNodeLogger.createSimpleLogger({
     timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS',
@@ -34,6 +34,15 @@ app.listen(port, () => {
     }
 });
 
+app.post('/createUri', jsonParser, async (req, res) => {
+    if ('data' in req.body)  {
+    let response= await createUri(ipfsGateway, authHeader, req.body.data)
+    res.status(200).json(response)
+    } else {
+        res.status(404).send('No Data in payload')
+    }
+});
+
 app.post('/storeFile', jsonParser, async (req, res) => {
     if ('data' in req.body)  {
     let response= await addFile(ipfsGateway, authHeader, req.body.data)
@@ -42,6 +51,7 @@ app.post('/storeFile', jsonParser, async (req, res) => {
         res.status(404).send('No Data in payload')
     }
 });
+
 
 
 
