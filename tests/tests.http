@@ -11,3 +11,10 @@ content-type: application/json
 {
     "data":{"name":"guy","description":"Freddy"}
 }
+
+https://mynftnotary-jsu7sc3kfa-uc.a.run.app:8080/storeFile HTTP/1.1
+content-type: application/json
+
+{
+    "data":{"name":"guy","description":"Freddy"}
+}
