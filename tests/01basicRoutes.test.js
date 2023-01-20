@@ -12,7 +12,7 @@ describe('basic routes test', () => {
 
   afterAll(() => {});
 
-  test('load file', async () => {
+  test('load file local', async () => {
     const debug = false
 
     const options = {
@@ -26,11 +26,26 @@ describe('basic routes test', () => {
       }
     }
     const response = await axios.request(options)
-
-
     expect(Object.keys(response.data)).toContainEqual("cid")
-
   });
+
+  test('load file cloud', async () => {
+    const debug = false
+
+    const options = {
+      method: 'POST',
+      url: 'https://mynftnotary-jsu7sc3kfa-uc.a.run.app/storeFile',
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: {
+        data: "Hello World"
+      }
+    }
+    const response = await axios.request(options)
+    expect(Object.keys(response.data)).toContainEqual("cid")
+  },120000);
+
   test('load PDF', async () => {
     const debug = false
     const data = await fs.readFileSync('tests/ABNRegistration.pdf', 'base64')

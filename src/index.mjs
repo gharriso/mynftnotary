@@ -1,17 +1,17 @@
 import express from 'express'
 
 import bodyParser from 'body-parser'
- 
+
 import simpleNodeLogger from 'simple-node-logger'
 
-import {addFile,createUri} from './storeFile.mjs'
+import { addFile, createUri } from './storeFile.mjs'
 
 const log = simpleNodeLogger.createSimpleLogger({
     timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS',
 })
 
 const app = express()
-const jsonParser = bodyParser.json({limit: '50mb'})
+const jsonParser = bodyParser.json({ limit: '50mb' })
 
 let authHeader
 let ipfsGateway
@@ -35,18 +35,27 @@ app.listen(port, () => {
 });
 
 app.post('/createUri', jsonParser, async (req, res) => {
-    if ('data' in req.body)  {
-    let response= await createUri(ipfsGateway, authHeader, req.body.data)
-    res.status(200).json(response)
+    if ('data' in req.body) {
+        let response = await createUri(ipfsGateway, authHeader, req.body.data)
+        res.status(200).json(response)
     } else {
         res.status(404).send('No Data in payload')
     }
 });
 
 app.post('/storeFile', jsonParser, async (req, res) => {
-    if ('data' in req.body)  {
-    let response= await addFile(ipfsGateway, authHeader, req.body.data)
-    res.status(200).json(response)
+    if ('data' in req.body) {
+        let response = await addFile(ipfsGateway, authHeader, req.body.data)
+        res.status(200).json(response)
+    } else {
+        res.status(404).send('No Data in payload')
+    }
+});
+
+app.post('/mintNft', jsonParser, async (req, res) => {
+    if ('data' in req.body) {
+        let response = await mintNft(ipfsGateway, authHeader, req.body.data)
+        res.status(200).json(response)
     } else {
         res.status(404).send('No Data in payload')
     }

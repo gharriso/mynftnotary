@@ -11,7 +11,7 @@ const log = simpleNodeLogger.createSimpleLogger({
 })
 
 export async function addFile(ipfsGateWay, authHeader, base64content) {
-
+    try {
     const ipfs = create({
         url: `${ipfsGateWay}/api/v0`,
         headers: {
@@ -28,7 +28,10 @@ export async function addFile(ipfsGateWay, authHeader, base64content) {
     return {
         cid: cid.toString(),
         size: fileStat.cumulativeSize
-    };
+    }
+}catch(error) {
+    return(error.message)
+}
 }
 
 export async function createUri(ipfsGateWay, authHeader, jsonData) {
@@ -56,8 +59,8 @@ export async function createUri(ipfsGateWay, authHeader, jsonData) {
     }
 }
 
-async function mintNft(contractName, contractAddress, uriCid,
-    destinationAddress = defaultDestination) {
+export async function mintNft(contractName, contractAddress, uriCid,
+    destinationAddress ) {
     try {
 
         const cidString = uriCid.toString()
