@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 
 import simpleNodeLogger from 'simple-node-logger'
 
-import { addFile, createUri } from './storeFile.mjs'
+import { addFile, createUri, mintNft } from './storeFile.mjs'
 
 const log = simpleNodeLogger.createSimpleLogger({
     timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS',
@@ -54,7 +54,7 @@ app.post('/storeFile', jsonParser, async (req, res) => {
 
 app.post('/mintNft', jsonParser, async (req, res) => {
     if ('data' in req.body) {
-        let response = await mintNft(ipfsGateway, authHeader, req.body.data)
+        let response = await mintNft(ipfsGateway, authHeader, req.body.fileData)
         res.status(200).json(response)
     } else {
         res.status(404).send('No Data in payload')
