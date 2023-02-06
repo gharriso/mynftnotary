@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 
 import simpleNodeLogger from 'simple-node-logger'
 
-import { addFile, createUri, mintNft } from './storeFile.mjs'
+import { addFile, createUri, mintNft,quickMint } from './storeFile.mjs'
 
 const log = simpleNodeLogger.createSimpleLogger({
     timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS',
@@ -52,12 +52,32 @@ app.post('/storeFile', jsonParser, async (req, res) => {
     }
 });
 
-app.post('/mintNft', jsonParser, async (req, res) => {
-    if ('data' in req.body) {
-        let response = await mintNft(ipfsGateway, authHeader, req.body.fileData)
+app.post('/quickMint', jsonParser, async (req, res) => {
+    if (!('contractAddr' in process.env)) {
+        return('No contractAddr  in environment')
+    }
+    if (!('contractName' in process.env)) {
+        return('No contractName  in environment' )
+    }
+    if (!('defaultDestination' in process.env)) {
+        return('No defaultDestination  in environment')
+    }
+    if ('data' in req.body && 'name' in req.body && 'description' in req.body) {
+        const parameters={
+            ipfsGateWay:ipfsGateway,
+            authHeader,
+            contractName:process.env.contractName,
+            contractAddr:process.env.contractAddr,
+            fileData:req.body.data,
+            fileName:req.body.name ,
+            description:req.body.description,
+            destination:process.env.defaultDestination
+        }
+   
+        let response = await quickMint(parameters)
         res.status(200).json(response)
     } else {
-        res.status(404).send('No Data in payload')
+        res.status(404).send('missing data,name or description in request body')
     }
 });
 

@@ -58,6 +58,21 @@ export async function createUri(ipfsGateWay, authHeader, jsonData) {
         return (error.message)
     }
 }
+export async function quickMint(options) {
+    if (!('ipfsGateWay' in options && 'authHeader' in options&&'contractName' in options && 'contractAddr' in options && 'fileData' in options && 'fileName' in options && 'description' in options && 'destination' in options)) {
+        return('incomplete parameters forwarded')
+    }
+    let {cid,size}=await addFile(options.ipfsGateWay,options.authHeader,options.fileData)
+    let jsonData={
+        name:options.fileName,
+        description: options.description,
+        image:cid
+    }
+    let tokenUri=await createUri(options.ipfsGateWay,options.authHeader,jsonData)
+    let nftData=await mintNft(options.contractName,options.contractAddr,tokenUri,options.destination)
+    return(nftData)
+
+}
 
 export async function mintNft(contractName, contractAddress, uriCid,
     destinationAddress ) {
